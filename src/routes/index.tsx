@@ -1,10 +1,10 @@
 import { signIn, signOut } from "@auth/solid-start/client";
-import { Suspense, type VoidComponent } from "solid-js";
+import { Suspense, type JSXElement, type VoidComponent } from "solid-js";
 import { A } from "solid-start";
 import { createSession } from "~/server/helpers";
 import { trpc } from "../utils/trpc";
 
-const AuthShowcase: VoidComponent = () => {
+const AuthShowcase: VoidComponent = (): JSXElement => {
   const sessionData = createSession();
 
   return (
@@ -22,7 +22,7 @@ const AuthShowcase: VoidComponent = () => {
   );
 };
 
-const Home: VoidComponent = () => {
+const Home: VoidComponent = (): JSXElement => {
   const hello = trpc.example.hello.useQuery(() => ({ name: "hello" }));
 
   return (

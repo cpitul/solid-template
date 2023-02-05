@@ -1,10 +1,10 @@
 // @refresh reload
-import { Suspense } from "solid-js";
+import { Suspense, type JSXElement } from "solid-js";
 import { Body, ErrorBoundary, FileRoutes, Head, Html, Link, Meta, Routes, Scripts, Title } from "solid-start";
 import { queryClient, trpc } from "~/utils/trpc";
 import "./root.css";
 
-export default function Root() {
+export default function Root(): JSXElement {
   return (
     <Html lang="en">
       <Head>
