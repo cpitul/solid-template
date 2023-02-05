@@ -17,13 +17,7 @@ export default function Root() {
       </Head>
       <Body>
         <trpc.Provider queryClient={queryClient}>
-          <Suspense
-            fallback={
-              <div>
-                <h1>Loading...</h1>
-              </div>
-            }
-          >
+          <Suspense fallback={<h1>Loading...</h1>}>
             <ErrorBoundary>
               <Routes>
                 <FileRoutes />

@@ -15,9 +15,9 @@ export const authOpts: SolidAuthConfig = {
   },
   adapter: PrismaAdapter(prisma) as any,
   providers: [
-    // @ts-ignore types error
+    // // @ts-expect-error types error
     // GitHub({ clientId: serverEnv.GITHUB_ID, clientSecret: serverEnv.GITHUB_SECRET }),
-    // @ts-ignore types error
+    // // @ts-expect-error types error
     // Discord({
     //   clientId: serverEnv.DISCORD_ID,
     //   clientSecret: serverEnv.DISCORD_SECRET,
@@ -25,9 +25,7 @@ export const authOpts: SolidAuthConfig = {
   ],
   session: {
     strategy: "database",
-    generateSessionToken: () => {
-      return crypto.randomUUID();
-    },
+    generateSessionToken: () => crypto.randomUUID(),
   },
   debug: serverEnv.NODE_ENV !== "production",
 };

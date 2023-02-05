@@ -7,14 +7,13 @@ export const BASE_TRPC_PATHNAME = "/api/trpc" as const;
 
 const getBaseUrl = () => {
   if (typeof window !== "undefined") return "";
-  // PROD: replace example.com with your actual production url
+  // TODO PROD: replace example.com with your actual production url
   if (process.env.NODE_ENV === "production") return `https://example.com${BASE_TRPC_PATHNAME}`;
   return `http://localhost:${process.env.PORT ?? 3000}${BASE_TRPC_PATHNAME}`;
 };
 
 export const trpc = createTRPCSolidStart<AppRouter>({
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  config(_event) {
+  config() {
     return {
       links: [
         httpBatchLink({

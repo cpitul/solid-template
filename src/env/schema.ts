@@ -22,7 +22,7 @@ export const serverScheme = z
     ENABLE_VC_BUILD: z
       .string()
       .default("1")
-      .transform((v) => parseInt(v)),
+      .transform((v) => parseInt(v, 10)),
     DISCORD_ID: z.string().optional(),
     DISCORD_SECRET: z.string().optional(),
     AUTH_SECRET: z.string(),
@@ -39,10 +39,10 @@ export const clientScheme = z.object({
   MODE: z.enum(["development", "production", "test"]).default("development"),
 });
 
-export const formatErrors = (errors: ZodFormattedError<Map<string, string>, string>) =>
+export const formatErrors = (errors: ZodFormattedError<Map<string, string>>) =>
   Object.entries(errors)
     .map(([name, value]) => {
-      if (value && "_errors" in value) return `${name}: ${value._errors.join(", ")}\n`;
+      if ("_errors" in value) return `${name}: ${value._errors.join(", ")}\n`;
       return "";
     })
     .filter(Boolean);

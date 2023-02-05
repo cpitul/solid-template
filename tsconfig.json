@@ -5,15 +5,10 @@
     "moduleResolution": "node",
     "jsxImportSource": "solid-js",
     "jsx": "preserve",
-    "types": [
-      "solid-start/env",
-      "./auth"
-    ],
+    "types": ["solid-start/env", "./auth"],
     "baseUrl": "./",
     "paths": {
-      "~/*": [
-        "./src/*"
-      ]
+      "~/*": ["./src/*"]
     },
     "strict": true,
     "noUnusedLocals": true,

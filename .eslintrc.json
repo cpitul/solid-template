@@ -6,11 +6,10 @@
   "parserOptions": {
     "project": "./tsconfig.json"
   },
-  "plugins": [
-    "@typescript-eslint",
-    "solid"
-  ],
+  "plugins": ["@typescript-eslint", "solid"],
   "extends": [
+    "airbnb-base",
+    "airbnb-typescript/base",
     "eslint:recommended",
     "plugin:prettier/recommended",
     "plugin:solid/typescript",
@@ -19,20 +18,26 @@
     "plugin:@typescript-eslint/strict"
   ],
   "rules": {
-    "@typescript-eslint/consistent-type-imports": "warn",
+    "import/prefer-default-export": "off",
     "import/extensions": [
-      "error",
-      "ignorePackages",
+      "warn",
       {
-        "": "never"
+        "js": "never"
       }
     ],
+    "no-underscore-dangle": "off",
+    "no-console": "off",
+    "no-param-reassign": "off",
     "prettier/prettier": [
       "error",
       {
         "endOfLine": "auto"
       }
     ],
+    "@typescript-eslint/unbound-method": "off",
+    "@typescript-eslint/consistent-type-imports": "warn",
+    "@typescript-eslint/no-unsafe-assignment": "off",
+    "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/no-inferrable-types": "off",
     "@typescript-eslint/no-empty-interface": [
       "warn",
@@ -48,13 +53,9 @@
         "allowTemplateLiterals": true
       }
     ],
-    "semi": [
-      "error",
-      "always"
-    ],
-    "no-empty-pattern": [
-      "warn"
-    ],
+    "semi": ["error", "always"],
+    "no-void": "off",
+    "no-empty-pattern": ["warn"],
     "no-mixed-spaces-and-tabs": "off"
   }
 }

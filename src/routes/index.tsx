@@ -4,6 +4,24 @@ import { A } from "solid-start";
 import { createSession } from "~/server/helpers";
 import { trpc } from "../utils/trpc";
 
+const AuthShowcase: VoidComponent = () => {
+  const sessionData = createSession();
+
+  return (
+    <div class="flex flex-col items-center justify-center gap-4">
+      <p class="text-center text-2xl text-white">
+        {sessionData() && <span>Logged in as {sessionData()?.user?.name} </span>}
+      </p>
+      <button
+        class="rounded-full bg-white/10 px-10 py-3 font-semibold text-white no-underline transition hover:bg-white/20"
+        onClick={sessionData() ? () => void signOut() : () => void signIn()}
+      >
+        {sessionData() ? "Sign out" : "Sign in"}
+      </button>
+    </div>
+  );
+};
+
 const Home: VoidComponent = () => {
   const hello = trpc.example.hello.useQuery(() => ({ name: "hello" }));
 
@@ -19,7 +37,7 @@ const Home: VoidComponent = () => {
             href="https://start.solidjs.com"
             target="_blank"
           >
-            <h3 class="text-2xl font-bold">Solid Start →</h3>
+            <h3 class="text-2xl font-bold"> Solid Start → </h3>
             <div class="text-lg">Learn more about Solid Start and the basics.</div>
           </A>
           <A
@@ -32,31 +50,13 @@ const Home: VoidComponent = () => {
           </A>
         </div>
         <div class="flex flex-col items-center gap-2">
-          <p class="text-2xl text-white">{hello.data ?? "Loading tRPC query"}</p>
+          <p class="text-2xl text-white">{hello.data ?? "Loading tRPC query"} </p>
           <Suspense>
             <AuthShowcase />
           </Suspense>
         </div>
       </div>
     </main>
-  );
-};
-
-const AuthShowcase: VoidComponent = () => {
-  const sessionData = createSession();
-
-  return (
-    <div class="flex flex-col items-center justify-center gap-4">
-      <p class="text-center text-2xl text-white">
-        {sessionData() && <span>Logged in as {sessionData()?.user?.name}</span>}
-      </p>
-      <button
-        class="rounded-full bg-white/10 px-10 py-3 font-semibold text-white no-underline transition hover:bg-white/20"
-        onClick={sessionData() ? () => void signOut() : () => void signIn()}
-      >
-        {sessionData() ? "Sign out" : "Sign in"}
-      </button>
-    </div>
   );
 };
 

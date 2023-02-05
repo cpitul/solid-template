@@ -5,17 +5,18 @@ import { serverEnv } from "~/env/server";
 import type { TRPCContext } from "./context";
 
 export const t = initTRPC.context<TRPCContext>().create();
-export const router = t.router;
+export const { router } = t;
 
-export const procedure = t.procedure;
+export const { procedure } = t;
 export const protectedProcedure = procedure.use(
   t.middleware(async ({ ctx, next }) => {
-    if (!ctx.session || !ctx.session.user) {
+    if (!ctx.session?.user) {
       throw new TRPCError({
         code: "UNAUTHORIZED",
         message: "You are not authorized to access this resource",
       });
     }
+
     return next({ ctx: { ...ctx, session: { ...ctx.session, user: ctx.session.user } } });
   })
 );
@@ -50,7 +51,7 @@ const withRateLimit = t.middleware(async ({ ctx, next }) => {
 export const procedureWithLimiter = procedure.use(withRateLimit);
 export const protectedProcedureWithLimiter = procedure.use(
   t.middleware(async ({ ctx, next }) => {
-    if (!ctx.session || !ctx.session.user) {
+    if (!ctx.session?.user) {
       throw new TRPCError({
         code: "UNAUTHORIZED",
         message: "You are not authorized to access this resource",
