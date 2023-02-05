@@ -24,6 +24,19 @@ npm run start
 
 This will start a production server on port `3000`.
 
+## Base Template
+
+- [Solid Start](https://github.com/solidjs/solid-start)
+- [TypeScript](https://github.com/microsoft/TypeScript)
+- [Zod](https://github.com/colinhacks/zod)
+- [Solid EsLint + Prettier](https://github.com/solidjs-community/eslint-plugin-solid)
+- [Prisma](https://github.com/prisma/prisma)
+- [tRPC](https://github.com/trpc/trpc)
+- [TailwindCSS](https://github.com/tailwindlabs/tailwindcss)
+- [Upstash Ratelimit](https://github.com/upstash/ratelimit)
+- [AuthJS](https://github.com/nextauthjs/next-auth)
+
+
 ### Enviroment Variables
 
 - `ENABLE_VC_BUILD`=1
