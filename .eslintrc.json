@@ -1,8 +1,15 @@
 {
-  "env": { "browser": true },
+  "env": {
+    "browser": true
+  },
   "parser": "@typescript-eslint/parser",
-  "parserOptions": { "project": "./tsconfig.json" },
-  "plugins": ["@typescript-eslint", "solid"],
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
+  "plugins": [
+    "@typescript-eslint",
+    "solid"
+  ],
   "extends": [
     "eslint:recommended",
     "plugin:prettier/recommended",
@@ -13,13 +20,41 @@
   ],
   "rules": {
     "@typescript-eslint/consistent-type-imports": "warn",
-    "import/extensions": ["error", "ignorePackages", { "": "never" }],
-    "prettier/prettier": ["error", { "endOfLine": "auto" }],
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "": "never"
+      }
+    ],
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto"
+      }
+    ],
     "@typescript-eslint/no-inferrable-types": "off",
-    "@typescript-eslint/no-empty-interface": ["warn", { "allowSingleExtends": true }],
-    "quotes": ["warn", "double", { "avoidEscape": true, "allowTemplateLiterals": true }],
-    "semi": ["error", "always"],
-    "no-empty-pattern": ["warn"],
+    "@typescript-eslint/no-empty-interface": [
+      "warn",
+      {
+        "allowSingleExtends": true
+      }
+    ],
+    "quotes": [
+      "warn",
+      "double",
+      {
+        "avoidEscape": true,
+        "allowTemplateLiterals": true
+      }
+    ],
+    "semi": [
+      "error",
+      "always"
+    ],
+    "no-empty-pattern": [
+      "warn"
+    ],
     "no-mixed-spaces-and-tabs": "off"
   }
 }
