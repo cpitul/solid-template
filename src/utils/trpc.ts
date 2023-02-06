@@ -1,7 +1,7 @@
 import { QueryClient } from "@adeora/solid-query";
 import { httpBatchLink } from "@trpc/client";
 import { createTRPCSolidStart } from "solid-trpc";
-import type { AppRouter } from "~/server/trpc/router/_app";
+import { type AppRouter } from "~/server/trpc/router/_app";
 
 export const BASE_TRPC_PATHNAME = "/api/trpc" as const;
 

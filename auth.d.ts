@@ -1,9 +1,10 @@
-import type { DefaultSession } from "@auth/core/types";
+import { type DefaultSession } from "@auth/core/types";
 
 declare module "@auth/core/types" {
-  export interface Session {
+  // @ts-expect-error xD!
+  export type Session = {
     user?: {
       id?: string;
     } & DefaultSession["user"];
-  }
+  };
 }

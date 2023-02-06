@@ -1,8 +1,8 @@
 import { getSession } from "@auth/solid-start";
-import type { inferAsyncReturnType } from "@trpc/server";
-import type { createSolidAPIHandlerContext } from "solid-start-trpc";
+import { type inferAsyncReturnType } from "@trpc/server";
+import { type createSolidAPIHandlerContext } from "solid-start-trpc";
 // eslint-disable-next-line import/extensions
-import { authOpts } from "~/routes/api/auth/[...solidAuth]";
+import { authOpts } from "~/routes/api/auth/[...solidauth]";
 import { prisma } from "~/server/db/client";
 
 export const createContextInner = async (opts: createSolidAPIHandlerContext) => {

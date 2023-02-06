@@ -1,5 +1,4 @@
-import type { ZodFormattedError } from "zod";
-import { z } from "zod";
+import { z, type ZodFormattedError } from "zod";
 
 export const upstashScheme = z.object({
   UPSTASH_REDIS_REST_URL: z.string(),

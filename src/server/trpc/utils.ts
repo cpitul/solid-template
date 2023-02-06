@@ -2,7 +2,7 @@ import { initTRPC, TRPCError } from "@trpc/server";
 import { Ratelimit } from "@upstash/ratelimit";
 import { Redis } from "@upstash/redis";
 import { serverEnv } from "~/env/server";
-import type { TRPCContext } from "./context";
+import { type TRPCContext } from "./context";
 
 export const t = initTRPC.context<TRPCContext>().create();
 export const { router } = t;

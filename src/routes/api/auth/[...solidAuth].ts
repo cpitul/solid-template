@@ -5,8 +5,16 @@ import { prisma } from "~/server/db/client";
 
 export const authOpts: SolidAuthConfig = {
   callbacks: {
+    signIn() {
+      const isAllowedToSignIn = !void 0;
+      if (!isAllowedToSignIn) {
+        return false;
+      }
+      return true;
+    },
     session({ session, user }) {
       if (session.user) {
+        // @ts-expect-error xD!
         session.user.id = user.id;
       }
 
@@ -15,9 +23,7 @@ export const authOpts: SolidAuthConfig = {
   },
   adapter: PrismaAdapter(prisma) as any,
   providers: [
-    // // @ts-expect-error types error
     // GitHub({ clientId: serverEnv.GITHUB_ID, clientSecret: serverEnv.GITHUB_SECRET }),
-    // // @ts-expect-error types error
     // Discord({
     //   clientId: serverEnv.DISCORD_ID,
     //   clientSecret: serverEnv.DISCORD_SECRET,
