@@ -14,6 +14,8 @@ export function useSession(params?: UseSessionParams) {
 }
 
 type LoginProtecParams = { redirect?: Routes };
+// eslint-disable-next-line @typescript-eslint/no-unused-expressions
+/* i'd recommend using a middleware layer for this */
 export function loginProtec(params?: LoginProtecParams): void {
     const sessionData = useSession();
     const navigate = useNavigate();
