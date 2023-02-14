@@ -5,9 +5,8 @@ import { serverEnv } from "~/env/server";
 import { type TRPCContext } from "./context";
 
 export const t = initTRPC.context<TRPCContext>().create();
-export const { router } = t;
+export const { router, procedure } = t;
 
-export const { procedure } = t;
 export const protectedProcedure = procedure.use(
     t.middleware(async ({ ctx, next }) => {
         if (!ctx.session?.user) {
