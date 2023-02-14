@@ -53,7 +53,7 @@ const Home: VoidComponent = (): JSXElement => {
                 </div>
                 <div class="flex flex-col items-center gap-2">
                     <p class="text-2xl text-white">{hello.data ?? "Loading tRPC query"} </p>
-                    <Suspense>
+                    <Suspense fallback={<p>Loading...</p>}>
                         <AuthShowcase />
                     </Suspense>
                 </div>
