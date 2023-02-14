@@ -5,15 +5,15 @@ export const upstashScheme = z.object({
     UPSTASH_REDIS_REST_TOKEN: z.string(),
 });
 
-export const githubScheme = z.object({
-    GITHUB_ID: z.string(),
-    GITHUB_SECRET: z.string(),
-});
-
-export const discordScheme = z.object({
-    DISCORD_ID: z.string(),
-    DISCORD_SECRET: z.string(),
-});
+// export const githubScheme = z.object({
+//     GITHUB_ID: z.string(),
+//     GITHUB_SECRET: z.string(),
+// });
+//
+// export const discordScheme = z.object({
+//     DISCORD_ID: z.string(),
+//     DISCORD_SECRET: z.string(),
+// });
 
 export const serverScheme = z
     .object({
