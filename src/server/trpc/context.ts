@@ -6,12 +6,12 @@ import { authOpts } from "~/routes/api/auth/[...solidauth]";
 import { prisma } from "~/server/db/client";
 
 export const createContextInner = async (opts: createSolidAPIHandlerContext) => {
-  const session = await getSession(opts.req, authOpts);
-  return {
-    ...opts,
-    prisma,
-    session,
-  };
+    const session = await getSession(opts.req, authOpts);
+    return {
+        ...opts,
+        prisma,
+        session,
+    };
 };
 
 export const createContext = async (opts: createSolidAPIHandlerContext) => createContextInner(opts);
