@@ -1,12 +1,14 @@
 import { SolidAuth, type SolidAuthConfig } from "@auth/solid-start";
-// import { PrismaAdapter } from "@next-auth/prisma-adapter";
+import { PrismaAdapter } from "@next-auth/prisma-adapter";
+import type { Adapter } from "@auth/core/adapters";
 import { serverEnv } from "~/env/server";
-// import { prisma } from "~/server/db/client";
+import { prisma } from "~/server/db/client";
 
 export const authOpts: SolidAuthConfig = {
     callbacks: {
         signIn() {
             const isAllowedToSignIn = !void 0;
+            // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
             if (!isAllowedToSignIn) {
                 return false;
             }
@@ -24,7 +26,7 @@ export const authOpts: SolidAuthConfig = {
             return session;
         },
     },
-    // adapter: PrismaAdapter(prisma),
+    adapter: PrismaAdapter(prisma) as Adapter,
     providers: [
         // GitHub({
         //     clientId: serverEnv.GITHUB_ID,
@@ -42,5 +44,4 @@ export const authOpts: SolidAuthConfig = {
     debug: serverEnv.NODE_ENV !== "production",
 };
 
-// eslint-disable-next-line no-empty-pattern
-// export const {} = SolidAuth(authOpts);
+export const { GET, POST } = SolidAuth(authOpts);

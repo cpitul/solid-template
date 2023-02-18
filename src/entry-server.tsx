@@ -11,6 +11,7 @@ export default createHandler(
             if (PROTECTED_PATHS.includes(new URL(event.request.url).pathname)) {
                 // const user = await getUser(event.request);
                 const user = undefined;
+                // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
                 if (!user) {
                     return redirect("/"); // a page for a non logged in user
                 }
