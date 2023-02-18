@@ -13,6 +13,9 @@ export const authOpts: SolidAuthConfig = {
             return true;
         },
         session({ session, user }) {
+            console.log("session?", session);
+            console.log("user?", user);
+
             if (session.user) {
                 // @ts-expect-error xD!
                 session.user.id = user.id;
