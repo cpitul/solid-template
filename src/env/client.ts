@@ -1,10 +1,13 @@
-import { clientScheme, formatErrors } from "./schema";
+import { isServer } from "solid-js/web";
+import { type ClientScheme, clientScheme, formatErrors } from "./schema";
 
-const env = clientScheme.safeParse(import.meta.env);
+const env = clientScheme.safeParse(process.env);
 
-if (!env.success) {
+// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+if (!isServer && !env.success) {
     console.error("❌ Invalid environment variables:\n", ...formatErrors(env.error.format()));
     throw new Error("Invalid environment variables");
 }
 
-export const clientEnv = env.data;
+//  @ts-expect-error xD!
+export const clientEnv: ClientScheme = env.data;
