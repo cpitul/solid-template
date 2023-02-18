@@ -42,4 +42,5 @@ export const authOpts: SolidAuthConfig = {
     debug: serverEnv.NODE_ENV !== "production",
 };
 
-export const { GET, POST } = SolidAuth(authOpts);
+// eslint-disable-next-line no-empty-pattern
+export const {} = SolidAuth(authOpts);
