@@ -15,6 +15,7 @@
         "airbnb-typescript/base",
         "eslint:recommended",
         "plugin:prettier/recommended",
+        "plugin:solid/recommended",
         "plugin:solid/typescript",
         "plugin:@typescript-eslint/recommended",
         "plugin:@typescript-eslint/recommended-requiring-type-checking",
