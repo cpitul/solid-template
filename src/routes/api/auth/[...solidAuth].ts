@@ -43,4 +43,4 @@ export const authOpts: SolidAuthConfig = {
 };
 
 // eslint-disable-next-line no-empty-pattern
-export const {} = SolidAuth(authOpts);
+// export const {} = SolidAuth(authOpts);
