@@ -1,4 +1,5 @@
 import { PrismaClient } from "@prisma/client";
+import { isServer } from "solid-js/web";
 import { serverEnv } from "~/env/server";
 
 declare global {
@@ -12,6 +13,7 @@ export const prisma =
         log: serverEnv.NODE_ENV === "development" ? ["query", "error", "warn"] : ["error"],
     });
 
-if (serverEnv.NODE_ENV !== "production") {
+// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+if (serverEnv.NODE_ENV !== "production" && isServer) {
     global.prisma = prisma;
 }

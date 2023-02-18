@@ -34,9 +34,13 @@ export const serverScheme = z
     // .merge(discordScheme)
     .merge(upstashScheme.partial());
 
+export type ServerScheme = z.infer<typeof serverScheme>;
+
 export const clientScheme = z.object({
     MODE: z.enum(["development", "production", "test"]).default("development"),
 });
+
+export type ClientScheme = z.infer<typeof clientScheme>;
 
 export const formatErrors = (errors: ZodFormattedError<Map<string, string>>) =>
     Object.entries(errors)

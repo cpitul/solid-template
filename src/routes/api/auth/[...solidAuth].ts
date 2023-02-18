@@ -23,10 +23,13 @@ export const authOpts: SolidAuthConfig = {
     },
     adapter: PrismaAdapter(prisma) as any,
     providers: [
-        // GitHub({ clientId: serverEnv.GITHUB_ID, clientSecret: serverEnv.GITHUB_SECRET }),
+        // GitHub({
+        //     clientId: serverEnv.GITHUB_ID,
+        //     clientSecret: serverEnv.GITHUB_SECRET
+        // }),
         // Discord({
-        //   clientId: serverEnv.DISCORD_ID,
-        //   clientSecret: serverEnv.DISCORD_SECRET,
+        //     clientId: serverEnv.DISCORD_ID,
+        //     clientSecret: serverEnv.DISCORD_SECRET,
         // }),
     ],
     session: {
