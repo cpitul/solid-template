@@ -1,7 +1,7 @@
 import { SolidAuth, type SolidAuthConfig } from "@auth/solid-start";
-import { PrismaAdapter } from "@next-auth/prisma-adapter";
+// import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { serverEnv } from "~/env/server";
-import { prisma } from "~/server/db/client";
+// import { prisma } from "~/server/db/client";
 
 export const authOpts: SolidAuthConfig = {
     callbacks: {
@@ -13,6 +13,9 @@ export const authOpts: SolidAuthConfig = {
             return true;
         },
         session({ session, user }) {
+            console.log("session?", session);
+            console.log("user?", user);
+
             if (session.user) {
                 // @ts-expect-error xD!
                 session.user.id = user.id;
@@ -21,7 +24,7 @@ export const authOpts: SolidAuthConfig = {
             return session;
         },
     },
-    adapter: PrismaAdapter(prisma) as any,
+    // adapter: PrismaAdapter(prisma),
     providers: [
         // GitHub({
         //     clientId: serverEnv.GITHUB_ID,
