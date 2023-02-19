@@ -2,8 +2,8 @@
 import { useNavigate } from "solid-start/router";
 import { getSession } from "@auth/solid-start";
 import { createServerData$ } from "solid-start/server";
-import { authOpts } from "~/routes/api/auth/[...solidauth]";
 import { Routes } from "~/utils/enums";
+import { authOpts } from "~/utils/auth";
 
 export function useSession() {
     return createServerData$(async (_, event) => getSession(event.request, authOpts), { key: () => ["auth_user"] });
