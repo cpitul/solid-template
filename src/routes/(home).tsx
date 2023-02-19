@@ -19,7 +19,7 @@ const AuthShowcase: VoidComponent = (): JSXElement => {
 };
 
 const Home: VoidComponent = (): JSXElement => {
-    const hello = trpc.example.hello.useQuery(() => ({ name: "CHANGE_ME" }));
+    const { data } = trpc.example.hello.useQuery(() => ({ name: "CHANGE_ME" }));
 
     return (
         <main class="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#9d679c] to-[#aeb2e7]">
@@ -46,7 +46,7 @@ const Home: VoidComponent = (): JSXElement => {
                     </A>
                 </div>
                 <div class="flex flex-col items-center gap-2">
-                    <p class="text-2xl text-white">{hello.data ?? "Loading tRPC query"} </p>
+                    <p class="text-2xl text-white">{data ?? "Loading tRPC query"} </p>
                     <Suspense fallback={<p>Loading...</p>}>
                         <AuthShowcase />
                     </Suspense>

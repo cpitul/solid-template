@@ -17,8 +17,8 @@ export default function Root(): JSXElement {
             </Head>
             <Body>
                 <trpc.Provider queryClient={queryClient}>
-                    <Suspense fallback={<h1>Loading...</h1>}>
-                        <ErrorBoundary>
+                    <Suspense>
+                        <ErrorBoundary fallback={() => <h1>something went wrong</h1>}>
                             <Routes>
                                 <FileRoutes />
                             </Routes>
