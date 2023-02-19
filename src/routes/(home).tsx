@@ -1,6 +1,6 @@
 import { Suspense, type JSXElement, type VoidComponent } from "solid-js";
 import { A } from "solid-start";
-import { useSession } from "~/server/helpers";
+import { useSession } from "~/utils/auth";
 import { trpc } from "~/utils/trpc";
 
 const AuthShowcase: VoidComponent = (): JSXElement => {
