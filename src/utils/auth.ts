@@ -1,6 +1,8 @@
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import type { Adapter } from "@auth/core/adapters";
 import { type SolidAuthConfig } from "@auth/solid-start";
+import { getSession } from "@auth/solid-start";
+import { createServerData$ } from "solid-start/server";
 import { serverEnv } from "~/env/server";
 import { prisma } from "~/server/db/client";
 
@@ -40,3 +42,8 @@ export const authOpts: SolidAuthConfig = {
     },
     debug: serverEnv.NODE_ENV !== "production",
 };
+
+/** key: "auth_user"  */
+export function useSession() {
+    return createServerData$(async (_, event) => getSession(event.request, authOpts), { key: () => "auth_user" });
+}

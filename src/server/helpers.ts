@@ -1,22 +1,19 @@
-/* eslint-disable import/extensions */
 import { useNavigate } from "solid-start/router";
-import { getSession } from "@auth/solid-start";
-import { createServerData$ } from "solid-start/server";
+import { useSession } from "~/utils/auth";
 import { Routes } from "~/utils/enums";
-import { authOpts } from "~/utils/auth";
 
-export function useSession() {
-    return createServerData$(async (_, event) => getSession(event.request, authOpts), { key: () => ["auth_user"] });
-}
-
-type LoginProtecParams = { redirect?: Routes };
-/* i'd recommend using a middleware layer for this */
-export function loginProtec(params?: LoginProtecParams): void {
+type PrivateRouteParams = { enabled?: boolean; redirect?: Routes; replace?: boolean };
+/** i'd recommend using a middleware layer for this */
+export function privateRoute(params?: PrivateRouteParams): void {
+    if (!params?.enabled) return void 0;
     const sessionData = useSession();
     const navigate = useNavigate();
 
     if (!sessionData()?.user) {
-        return navigate(params?.redirect ?? Routes.SIGN_IN, { replace: true, state: { cheeky: true } });
+        return navigate(params.redirect ?? Routes.SIGN_IN, {
+            replace: params.replace === true,
+            state: { cheeky: true },
+        });
     }
 
     return void 0;
