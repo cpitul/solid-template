@@ -1,5 +1,5 @@
 import { type Session } from "@auth/core/types";
-import { type Component, Show } from "solid-js";
+import { Show, type Component } from "solid-js";
 import { useRouteData } from "solid-start";
 import { redirect } from "solid-start/server";
 import { useSession } from "~/utils/auth";
