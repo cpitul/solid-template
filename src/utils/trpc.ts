@@ -1,5 +1,5 @@
 import { QueryClient } from "@adeora/solid-query";
-import { httpBatchLink } from "@trpc/client";
+import { httpBatchLink, loggerLink } from "@trpc/client";
 import { createTRPCSolidStart } from "solid-trpc";
 import { type AppRouter } from "~/server/trpc/router/_app";
 
@@ -15,11 +15,7 @@ const getBaseUrl = () => {
 export const trpc = createTRPCSolidStart<AppRouter>({
     config() {
         return {
-            links: [
-                httpBatchLink({
-                    url: getBaseUrl(),
-                }),
-            ],
+            links: [loggerLink(), httpBatchLink({ url: getBaseUrl() })],
         };
     },
 });
