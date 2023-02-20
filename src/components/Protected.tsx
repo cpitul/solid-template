@@ -2,8 +2,8 @@ import { type Session } from "@auth/core/types";
 import { Show, type Component } from "solid-js";
 import { useRouteData } from "solid-start";
 import { redirect } from "solid-start/server";
+import { Routes } from "~/entry-server";
 import { useSession } from "~/utils/auth";
-import { Routes } from "~/utils/enums";
 
 type ProtectedComponent = Component<Session>;
 

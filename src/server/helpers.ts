@@ -1,6 +1,6 @@
 import { useNavigate } from "solid-start/router";
+import { Routes } from "~/entry-server";
 import { useSession } from "~/utils/auth";
-import { Routes } from "~/utils/enums";
 
 type PrivateRouteParams = { enabled?: boolean; redirect?: Routes; replace?: boolean };
 /** i'd recommend using a middleware layer for this */
