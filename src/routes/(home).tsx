@@ -12,7 +12,7 @@ const AuthShowcase: VoidComponent = (): JSXElement => {
                 {sessionData() && <span>Logged in as {sessionData()?.user?.name} </span>}
             </p>
             <p class="cursor-pointer rounded-full bg-white/10 px-10 py-3 font-semibold text-white no-underline transition hover:bg-white/20">
-                {sessionData() ? "Sign out" : "Sign in"}
+                {sessionData() ? "boop" : "boop"}
             </p>
         </div>
     );
