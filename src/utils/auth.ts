@@ -1,5 +1,4 @@
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
-import type { Adapter } from "@auth/core/adapters";
 import { type SolidAuthConfig } from "@auth/solid-start";
 import { getSession } from "@auth/solid-start";
 import { createServerData$ } from "solid-start/server";
@@ -14,18 +13,18 @@ export const authOpts: SolidAuthConfig = {
             if (!isAllowedToSignIn) {
                 return false;
             }
+
             return true;
         },
         session({ session, user }) {
             if (session.user) {
-                // @ts-expect-error xD!
                 session.user.id = user.id;
             }
 
             return session;
         },
     },
-    adapter: PrismaAdapter(prisma) as Adapter,
+    adapter: PrismaAdapter(prisma) as any,
     providers: [
         // GitHub({
         //     clientId: serverEnv.GITHUB_ID,
@@ -43,7 +42,6 @@ export const authOpts: SolidAuthConfig = {
     debug: serverEnv.NODE_ENV !== "production",
 };
 
-/** key: "auth_user"  */
 export function useSession() {
     return createServerData$(async (_, event) => getSession(event.request, authOpts), { key: () => "auth_user" });
 }

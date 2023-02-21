@@ -6,8 +6,7 @@
         "jsxImportSource": "solid-js",
         "jsx": "preserve",
         "types": [
-            "solid-start/env",
-            "./auth"
+            "solid-start/env"
         ],
         "baseUrl": "./",
         "paths": {
