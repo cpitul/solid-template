@@ -9,7 +9,7 @@ export const upstashScheme = z.object({
 //     GITHUB_ID: z.string(),
 //     GITHUB_SECRET: z.string(),
 // });
-//
+
 // export const discordScheme = z.object({
 //     DISCORD_ID: z.string(),
 //     DISCORD_SECRET: z.string(),
@@ -18,27 +18,21 @@ export const upstashScheme = z.object({
 export const serverScheme = z
     .object({
         NODE_ENV: z.enum(["development", "production", "test"]).default("development"),
-        ENABLE_VC_BUILD: z
-            .string()
-            .default("1")
-            .transform((v) => parseInt(v, 10)),
         DISCORD_ID: z.string().optional(),
         DISCORD_SECRET: z.string().optional(),
+        AUTH_URL: z.string().optional(),
         AUTH_SECRET: z.string(),
         AUTH_TRUST_HOST: z.string().optional(),
-        AUTH_URL: z.string().optional(),
         DATABASE_URL: z.string(),
     })
-    // TODO: remove .partial() if using service
+    // TODO: remove .partial() if using the service
     // .merge(githubScheme)
     // .merge(discordScheme)
     .merge(upstashScheme.partial());
 
 export type ServerScheme = z.infer<typeof serverScheme>;
 
-export const clientScheme = z.object({
-    MODE: z.enum(["development", "production", "test"]).default("development"),
-});
+export const clientScheme = z.object({});
 
 export type ClientScheme = z.infer<typeof clientScheme>;
 

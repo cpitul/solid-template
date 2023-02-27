@@ -2,30 +2,31 @@ import { type Session } from "@auth/core/types";
 import { Show, type Component } from "solid-js";
 import { useRouteData } from "solid-start";
 import { redirect } from "solid-start/server";
-import { Routes } from "~/entry-server";
 import { useSession } from "~/utils/auth";
+import { Routes } from "~/entry-server";
 
 type ProtectedComponent = Component<Session>;
 
-export default function Protected(Comp: ProtectedComponent) {
-    const routeData = () => {
-        const session = useSession();
-        if (!session()?.user) {
-            // eslint-disable-next-line @typescript-eslint/no-throw-literal
-            throw redirect(Routes.SIGN_IN);
-        }
+const routeDataSession = () => {
+    const session = useSession();
 
-        return { session };
-    };
+    if (!session()?.user) {
+        // eslint-disable-next-line @typescript-eslint/no-throw-literal
+        throw redirect(Routes.HOME);
+    }
 
+    return session;
+};
+
+export default function Protected(Component: ProtectedComponent) {
     return {
-        routeData,
+        routeData: routeDataSession,
         Page: () => {
-            const data = useRouteData<typeof routeData>();
+            const session = useRouteData<typeof routeDataSession>();
 
             return (
-                <Show when={data.session()} keyed>
-                    {(sess) => <Comp {...sess} />}
+                <Show when={session()} keyed>
+                    {(sess) => <Component {...sess} />}
                 </Show>
             );
         },
