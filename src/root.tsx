@@ -1,7 +1,8 @@
 // @refresh reload
 import { Suspense, type JSXElement } from "solid-js";
-import { Body, ErrorBoundary, FileRoutes, Head, Html, Link, Meta, Routes, Scripts, Title } from "solid-start";
+import { Body, ErrorBoundary, FileRoutes, Head, Html, Link, Meta, Route, Routes, Scripts, Title } from "solid-start";
 import { queryClient, trpc } from "~/utils/trpc";
+import { NotFound } from "./components/NotFound";
 import "./root.css";
 
 export default function Root(): JSXElement {
@@ -18,9 +19,10 @@ export default function Root(): JSXElement {
             <Body>
                 <trpc.Provider queryClient={queryClient}>
                     <Suspense>
-                        <ErrorBoundary fallback={() => <h1>something went wrong</h1>}>
+                        <ErrorBoundary>
                             <Routes>
                                 <FileRoutes />
+                                <Route path="*" component={NotFound} />
                             </Routes>
                         </ErrorBoundary>
                     </Suspense>
