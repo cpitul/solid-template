@@ -2,7 +2,7 @@
 import { Suspense, type JSXElement } from "solid-js";
 import { Body, ErrorBoundary, FileRoutes, Head, Html, Link, Meta, Route, Routes, Scripts, Title } from "solid-start";
 import { queryClient, trpc } from "~/utils/trpc";
-import { NotFound } from "./components/NotFound";
+import NotFound from "./components/NotFound";
 import "./root.css";
 
 export default function Root(): JSXElement {

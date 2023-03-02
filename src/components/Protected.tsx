@@ -5,8 +5,6 @@ import { redirect } from "solid-start/server";
 import { useSession } from "~/utils/auth";
 import { Routes } from "~/entry-server";
 
-type ProtectedComponent = Component<Session>;
-
 const routeDataSession = () => {
     const session = useSession();
 
@@ -17,6 +15,8 @@ const routeDataSession = () => {
 
     return session;
 };
+
+type ProtectedComponent = Component<Session>;
 
 export default function Protected(Component: ProtectedComponent) {
     return {
