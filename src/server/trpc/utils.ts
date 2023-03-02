@@ -27,7 +27,7 @@ const redis = new Redis({
 
 const ratelimit = new Ratelimit({
     redis,
-    limiter: Ratelimit.fixedWindow(20, "10 s"),
+    limiter: Ratelimit.fixedWindow(50, "10 s"),
 });
 
 const withRateLimit = t.middleware(async ({ ctx, next }) => {
@@ -44,6 +44,7 @@ const withRateLimit = t.middleware(async ({ ctx, next }) => {
             message: `Rate limit exceeded, retry in ${new Date(reset).getDate()} seconds`,
         });
     }
+
     return next({ ctx });
 });
 
@@ -56,6 +57,7 @@ export const protectedProcedureWithLimiter = procedure.use(
                 message: "You are not authorized to access this resource",
             });
         }
+
         return next({ ctx: { ...ctx, session: { ...ctx.session, user: ctx.session.user } } });
     })
 );
