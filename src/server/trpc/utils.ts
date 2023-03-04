@@ -27,7 +27,7 @@ const redis = new Redis({
 
 const ratelimit = new Ratelimit({
     redis,
-    limiter: Ratelimit.fixedWindow(50, "10 s"),
+    limiter: Ratelimit.fixedWindow(70, "10 s"),
 });
 
 const withRateLimit = t.middleware(async ({ ctx, next }) => {
