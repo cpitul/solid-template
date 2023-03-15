@@ -1,7 +1,7 @@
 // @refresh reload
 import { Suspense, type JSXElement } from "solid-js";
 import { Body, ErrorBoundary, FileRoutes, Head, Html, Link, Meta, Route, Routes, Scripts, Title } from "solid-start";
-import { queryClient, trpc } from "~/utils/trpc";
+import { client, queryClient, trpc } from "~/utils/trpc";
 import NotFound from "./components/NotFound";
 import "./root.css";
 
@@ -17,7 +17,8 @@ export default function Root(): JSXElement {
                 <Link rel="icon" href="/favicon.ico" />
             </Head>
             <Body>
-                <trpc.Provider queryClient={queryClient}>
+                {/** @ts-expect-error this will most probably get fixed in a future solid-trpc@start-ssr update */}
+                <trpc.Provider client={client} queryClient={queryClient}>
                     <Suspense>
                         <ErrorBoundary>
                             <Routes>
