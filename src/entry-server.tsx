@@ -9,10 +9,9 @@ export enum Routes {
 
     //  API
     API_AUTH = "/api/auth",
-    API_TRPC = "/api/trpc",
 }
 
-// make as const
+// make as const after populating
 const PROTECTED_ROUTES: string[] = [];
 
 export default createHandler(

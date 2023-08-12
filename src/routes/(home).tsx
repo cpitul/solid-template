@@ -1,7 +1,6 @@
 import { Suspense, type JSXElement, type VoidComponent } from "solid-js";
 import { A } from "solid-start";
 import { useSession } from "~/utils/auth";
-import { trpc } from "~/utils/trpc";
 
 const AuthShowcase: VoidComponent = (): JSXElement => {
     const sessionData = useSession();
@@ -19,8 +18,6 @@ const AuthShowcase: VoidComponent = (): JSXElement => {
 };
 
 const Home: VoidComponent = (): JSXElement => {
-    const { data } = trpc.example.hello.useQuery(() => ({ name: "CHANGE_ME" }));
-
     return (
         <main class="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#9d679c] to-[#aeb2e7]">
             <div class="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
@@ -46,7 +43,7 @@ const Home: VoidComponent = (): JSXElement => {
                     </A>
                 </div>
                 <div class="flex flex-col items-center gap-2">
-                    <p class="text-2xl text-white">{data ?? "Loading tRPC query"} </p>
+                    <p class="text-2xl text-white">Hello world!</p>
                     <Suspense fallback={<p>Loading...</p>}>
                         <AuthShowcase />
                     </Suspense>

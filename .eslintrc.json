@@ -33,14 +33,14 @@
         "no-console": "off",
         "no-param-reassign": "off",
         "prettier/prettier": [
-            "error",
+            "warn",
             {
                 "endOfLine": "auto"
             }
         ],
         "@typescript-eslint/unbound-method": "off",
         "@typescript-eslint/consistent-type-definitions": [
-            "error",
+            "warn",
             "type"
         ],
         "@typescript-eslint/consistent-type-imports": "warn",
