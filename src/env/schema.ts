@@ -36,10 +36,11 @@ export const clientScheme = z.object({});
 
 export type ClientScheme = z.infer<typeof clientScheme>;
 
-export const formatErrors = (errors: ZodFormattedError<Map<string, string>>) =>
-    Object.entries(errors)
+export const formatErrors = (errors: ZodFormattedError<Map<string, string>>) => {
+    return Object.entries(errors)
         .map(([name, value]) => {
             if ("_errors" in value) return `${name}: ${value._errors.join(", ")}\n`;
             return "";
         })
         .filter(Boolean);
+};

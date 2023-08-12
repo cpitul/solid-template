@@ -1,9 +1,9 @@
-import { PrismaAdapter } from "@next-auth/prisma-adapter";
+import { PrismaAdapter } from "@auth/prisma-adapter";
 import { type SolidAuthConfig } from "@auth/solid-start";
 import { getSession } from "@auth/solid-start";
 import { createServerData$ } from "solid-start/server";
 import { serverEnv } from "~/env/server";
-import { prisma } from "~/server/db/client";
+import { prisma } from "~/server/db";
 
 export const authOpts: SolidAuthConfig = {
     callbacks: {
@@ -24,7 +24,8 @@ export const authOpts: SolidAuthConfig = {
             return session;
         },
     },
-    adapter: PrismaAdapter(prisma) as any,
+    // @ts-expect-error - createUser type mismatch
+    adapter: PrismaAdapter(prisma),
     providers: [
         // GitHub({
         //     clientId: serverEnv.GITHUB_ID,

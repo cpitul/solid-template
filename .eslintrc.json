@@ -22,6 +22,7 @@
         "plugin:@typescript-eslint/strict"
     ],
     "rules": {
+        "import/no-relative-packages": "off",
         "import/prefer-default-export": "off",
         "import/extensions": [
             "warn",
