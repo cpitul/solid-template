@@ -32,6 +32,7 @@
                 "js": "never"
             }
         ],
+        "no-use-before-define": "off",
         "no-underscore-dangle": "off",
         "no-console": "off",
         "no-param-reassign": "off",
@@ -45,6 +46,12 @@
         "@typescript-eslint/consistent-type-definitions": [
             "warn",
             "type"
+        ],
+        "@typescript-eslint/no-use-before-define": [
+            "warn",
+            {
+                "functions": false
+            }
         ],
         "@typescript-eslint/consistent-type-imports": "warn",
         "@typescript-eslint/no-unsafe-assignment": "off",

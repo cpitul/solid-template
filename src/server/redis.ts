@@ -3,8 +3,10 @@ import { Ratelimit } from "@upstash/ratelimit";
 import { serverEnv } from "~/env/server";
 
 export const redis = new Redis({
-    url: serverEnv.UPSTASH_REDIS_REST_URL ?? "",
-    token: serverEnv.UPSTASH_REDIS_REST_TOKEN ?? "",
+    // @ts-expect-error - uncomment `upstashSchema` in `src/env/schema.ts`
+    url: serverEnv.UPSTASH_REDIS_REST_URL,
+    // @ts-expect-error - uncomment `upstashSchema` in `src/env/schema.ts`
+    token: serverEnv.UPSTASH_REDIS_REST_TOKEN,
 });
 
 export const ratelimit = new Ratelimit({

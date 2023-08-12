@@ -6,7 +6,7 @@ import { createServerData$, redirect } from "solid-start/server";
 import { authOpts } from "~/utils/auth";
 import { Routes } from "~/entry-server";
 
-function routeDataSession() {
+function routeData() {
     return createServerData$(
         async (_, event) => {
             const session = await getSession(event.request, authOpts);
@@ -20,14 +20,14 @@ function routeDataSession() {
     );
 }
 
-export default function Protected(Component: Component<Session>) {
+export default function Protected(Component: Component<{ session: Session }>) {
     return {
-        routeData: routeDataSession,
+        routeData,
         Page: () => {
-            const session = useRouteData<typeof routeDataSession>();
+            const session = useRouteData<typeof routeData>();
             return (
                 <Show when={session()} keyed>
-                    {(sess) => <Component {...sess} />}
+                    {(s) => <Component session={s} />}
                 </Show>
             );
         },

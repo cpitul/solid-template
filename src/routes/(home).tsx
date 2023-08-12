@@ -1,23 +1,8 @@
-import { Suspense, type JSXElement, type VoidComponent } from "solid-js";
+import { Suspense, type JSXElement } from "solid-js";
 import { A } from "solid-start";
-import { useSession } from "~/utils/auth";
+import { useSession$ } from "~/utils/auth";
 
-const AuthShowcase: VoidComponent = (): JSXElement => {
-    const sessionData = useSession();
-
-    return (
-        <div class="flex flex-col items-center justify-center gap-4">
-            <p class="text-center text-2xl text-white">
-                {sessionData() && <span>Logged in as {sessionData()?.user?.name} </span>}
-            </p>
-            <p class="cursor-pointer rounded-full bg-white/10 px-10 py-3 font-semibold text-white no-underline transition hover:bg-white/20">
-                {sessionData() ? "boop" : "boop"}
-            </p>
-        </div>
-    );
-};
-
-const Home: VoidComponent = (): JSXElement => {
+export default function Home(): JSXElement {
     return (
         <main class="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#9d679c] to-[#aeb2e7]">
             <div class="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
@@ -51,6 +36,19 @@ const Home: VoidComponent = (): JSXElement => {
             </div>
         </main>
     );
-};
+}
 
-export default Home;
+function AuthShowcase(): JSXElement {
+    const sessionData = useSession$();
+
+    return (
+        <div class="flex flex-col items-center justify-center gap-4">
+            <p class="text-center text-2xl text-white">
+                {sessionData() && <span>Logged in as {sessionData()?.user?.name} </span>}
+            </p>
+            <button class="rounded-full bg-white/10 px-10 py-3 font-semibold text-white no-underline transition hover:bg-white/20 active:scale-[.98]">
+                {sessionData() ? "boop" : "noboop"}
+            </button>
+        </div>
+    );
+}

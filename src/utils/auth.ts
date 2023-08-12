@@ -31,10 +31,6 @@ export const authOpts: SolidAuthConfig = {
         //     clientId: serverEnv.GITHUB_ID,
         //     clientSecret: serverEnv.GITHUB_SECRET
         // }),
-        // Discord({
-        //     clientId: serverEnv.DISCORD_ID,
-        //     clientSecret: serverEnv.DISCORD_SECRET,
-        // }),
     ],
     session: {
         strategy: "database",
@@ -43,6 +39,6 @@ export const authOpts: SolidAuthConfig = {
     debug: serverEnv.NODE_ENV !== "production",
 };
 
-export function useSession() {
+export function useSession$() {
     return createServerData$(async (_, event) => getSession(event.request, authOpts), { key: () => "auth_user" });
 }
