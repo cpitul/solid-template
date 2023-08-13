@@ -1,6 +1,6 @@
 import { Redis } from "@upstash/redis";
 import { Ratelimit } from "@upstash/ratelimit";
-import { serverEnv } from "~/env/server";
+import { serverEnv } from "~/utils/env/server";
 
 export const redis = new Redis({
     // @ts-expect-error - uncomment `upstashSchema` in `src/env/schema.ts`

@@ -2,8 +2,8 @@ import { PrismaAdapter } from "@auth/prisma-adapter";
 import { type SolidAuthConfig } from "@auth/solid-start";
 import { getSession } from "@auth/solid-start";
 import { createServerData$ } from "solid-start/server";
-import { serverEnv } from "~/env/server";
 import { prisma } from "~/server/db";
+import { serverEnv } from "./env/server";
 
 export const authOpts: SolidAuthConfig = {
     callbacks: {
