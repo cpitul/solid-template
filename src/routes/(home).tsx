@@ -1,10 +1,10 @@
 import { Suspense, type JSXElement } from "solid-js";
 import { A } from "solid-start";
-import { helloQuery } from "~/rpc/query";
+import { helloQuery } from "~/server/api/query";
 import { useSession$ } from "~/utils/auth";
 
 export default function Home(): JSXElement {
-    const hello = helloQuery({ name: "world" });
+    const hello = helloQuery({ name: "world!" });
 
     return (
         <main class="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#9d679c] to-[#aeb2e7]">

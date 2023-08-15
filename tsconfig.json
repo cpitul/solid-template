@@ -10,9 +10,6 @@
         ],
         "baseUrl": "./",
         "paths": {
-            "~/rpc/*": [
-                "./src/server/api/*"
-            ],
             "~/*": [
                 "./src/*"
             ]
