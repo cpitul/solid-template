@@ -1,8 +1,12 @@
 // @refresh reload
 import { Suspense, type JSXElement } from "solid-js";
 import { Body, ErrorBoundary, FileRoutes, Head, Html, Link, Meta, Route, Routes, Scripts, Title } from "solid-start";
+import { QueryProvider } from "@prpc/solid";
+import { QueryClient } from "@tanstack/solid-query";
 import NotFound from "./components/NotFound";
 import "./root.css";
+
+const queryClient = new QueryClient();
 
 export default function Root(): JSXElement {
     return (
@@ -16,14 +20,16 @@ export default function Root(): JSXElement {
                 <Link rel="icon" href="/favicon.ico" />
             </Head>
             <Body>
-                <Suspense>
-                    <ErrorBoundary>
-                        <Routes>
-                            <FileRoutes />
-                            <Route path="*" component={NotFound} />
-                        </Routes>
-                    </ErrorBoundary>
-                </Suspense>
+                <QueryProvider queryClient={queryClient}>
+                    <Suspense>
+                        <ErrorBoundary>
+                            <Routes>
+                                <FileRoutes />
+                                <Route path="*" component={NotFound} />
+                            </Routes>
+                        </ErrorBoundary>
+                    </Suspense>
+                </QueryProvider>
                 <Scripts />
             </Body>
         </Html>

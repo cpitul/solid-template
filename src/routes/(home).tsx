@@ -1,8 +1,11 @@
 import { Suspense, type JSXElement } from "solid-js";
 import { A } from "solid-start";
+import { helloQuery } from "~/rpc/query";
 import { useSession$ } from "~/utils/auth";
 
 export default function Home(): JSXElement {
+    const hello = helloQuery({ name: "world" });
+
     return (
         <main class="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#9d679c] to-[#aeb2e7]">
             <div class="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
@@ -28,7 +31,7 @@ export default function Home(): JSXElement {
                     </A>
                 </div>
                 <div class="flex flex-col items-center gap-2">
-                    <p class="text-2xl text-white">Hello world!</p>
+                    <p class="text-2xl text-white">{hello.data}</p>
                     <Suspense fallback={<p>Loading...</p>}>
                         <AuthShowcase />
                     </Suspense>
