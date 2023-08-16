@@ -4,24 +4,35 @@ import { getSession } from "@auth/solid-start";
 import { createServerData$ } from "solid-start/server";
 import { prisma } from "~/server/db";
 import { serverEnv } from "./env/server";
+import { RoleManager } from "./manager";
 
 export const authOpts: SolidAuthConfig = {
     callbacks: {
-        signIn() {
-            const isAllowedToSignIn = !void 0;
-            // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-            if (!isAllowedToSignIn) {
+        async signIn(params) {
+            try {
+                await RoleManager.assign(+params.user.id, "user");
+                params.user.roles = await RoleManager.getUserRoles(+params.user.id);
+
+                const isAllowedToSignIn = !void 0;
+                // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+                if (!isAllowedToSignIn) {
+                    throw new Error("Unauthorized");
+                }
+
+                return true;
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            } catch ({ message }: any) {
+                console.error("sign in callback", message);
                 return false;
             }
-
-            return true;
         },
-        session({ session, user }) {
-            if (session.user) {
-                session.user.id = user.id;
+        session(params) {
+            if (params.session.user) {
+                params.session.user.id = params.user.id;
+                params.session.user.roles = params.user.roles;
             }
 
-            return session;
+            return params.session;
         },
     },
     // @ts-expect-error - createUser type mismatch

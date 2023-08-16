@@ -43,6 +43,7 @@
             }
         ],
         "@typescript-eslint/unbound-method": "off",
+        "@typescript-eslint/no-extraneous-class": "off",
         "@typescript-eslint/consistent-type-definitions": [
             "warn",
             "type"

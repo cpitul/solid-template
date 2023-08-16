@@ -1,6 +1,8 @@
 import { isServer } from "solid-js/web";
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient, Prisma } from "@prisma/client";
 import { serverEnv } from "~/utils/env/server";
+
+export { Prisma };
 
 declare global {
     // eslint-disable-next-line no-var, vars-on-top

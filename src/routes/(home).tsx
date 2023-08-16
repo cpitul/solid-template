@@ -42,15 +42,15 @@ export default function Home(): JSXElement {
 }
 
 function AuthShowcase(): JSXElement {
-    const sessionData = useSession$();
+    const session = useSession$();
 
     return (
         <div class="flex flex-col items-center justify-center gap-4">
             <p class="text-center text-2xl text-white">
-                {sessionData() && <span>Logged in as {sessionData()?.user?.name} </span>}
+                {session() && <span>Logged in as {session()?.user?.name} </span>}
             </p>
             <button class="rounded-full bg-white/10 px-10 py-3 font-semibold text-white no-underline transition hover:bg-white/20 active:scale-[.98]">
-                {sessionData() ? "boop" : "noboop"}
+                {session() ? "boop" : "noboop"}
             </button>
         </div>
     );
