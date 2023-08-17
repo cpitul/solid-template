@@ -1,4 +1,3 @@
-import { type Role } from "@prisma/client";
 import {
     type DefaultSession,
     type DefaultUser,
@@ -10,8 +9,7 @@ declare module "@auth/core/types" {
     // eslint-disable-next-line @typescript-eslint/consistent-type-definitions
     interface Session {
         user: {
-            id: string;
-            roles: Array<Role["name"]>;
+            id: number;
         } & DefaultSession["user"];
     }
 
@@ -21,7 +19,7 @@ declare module "@auth/core/types" {
      */
     // eslint-disable-next-line @typescript-eslint/consistent-type-definitions, prettier/prettier
     interface User extends DefaultUser {
-        roles: Array<Role["name"]>;
+        id: number;
     }
 
     /**

@@ -11,7 +11,6 @@ export const authOpts: SolidAuthConfig = {
         async signIn(params) {
             try {
                 await RoleManager.assign(+params.user.id, "user");
-                params.user.roles = await RoleManager.getUserRoles(+params.user.id);
 
                 const isAllowedToSignIn = !void 0;
                 // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
@@ -28,8 +27,7 @@ export const authOpts: SolidAuthConfig = {
         },
         session(params) {
             if (params.session.user) {
-                params.session.user.id = params.user.id;
-                params.session.user.roles = params.user.roles;
+                params.session.user.id = +params.user.id;
             }
 
             return params.session;
