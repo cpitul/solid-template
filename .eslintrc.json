@@ -42,6 +42,13 @@
                 "endOfLine": "auto"
             }
         ],
+        "@typescript-eslint/array-type": [
+            "warn",
+            {
+                "default": "generic",
+                "readonly": "generic"
+            }
+        ],
         "@typescript-eslint/unbound-method": "off",
         "@typescript-eslint/no-extraneous-class": "off",
         "@typescript-eslint/consistent-type-definitions": [

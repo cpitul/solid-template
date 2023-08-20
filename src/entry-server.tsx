@@ -12,7 +12,7 @@ export enum Routes {
 }
 
 // make as const after populating
-const PROTECTED_ROUTES: string[] = [];
+const PROTECTED_ROUTES: Array<string> = [];
 
 export default createHandler(
     (input) => {
